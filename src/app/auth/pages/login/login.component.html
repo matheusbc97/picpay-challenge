@@ -1,6 +1,6 @@
 <div class="background">
   <main class="container">
-    <form class="login-form">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <img
         src="../../../../assets/picpay-logo.svg"
         alt="Pic Pay logo"
@@ -8,24 +8,32 @@
       />
 
       <div class="login-inputs-container">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" style="margin-bottom: 20px">
           <mat-label>Usuário</mat-label>
           <input
+            formControlName="username"
             matInput
             autocomplete="username"
             name="username"
             type="text"
             placeholder="Digite o nome de usuário..."
           />
+          <mat-error *ngIf="loginForm.get('username')?.invalid">
+            <small>{{ getErrorMessage("username") }}</small>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
           <input
+            formControlName="password"
             matInput
             type="password"
-            placeholder="Digite o nome de usuário..."
+            placeholder="Digite sua senha..."
           />
+          <mat-error *ngIf="loginForm.get('password')?.invalid">
+            <small>{{ getErrorMessage("password") }}</small>
+          </mat-error>
         </mat-form-field>
       </div>
 
