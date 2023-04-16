@@ -12,12 +12,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
     TextInputComponent,
     PasswordInputComponent,
     LoadingIndicatorComponent,
+    ButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -32,11 +34,11 @@ import { LoadingIndicatorComponent } from './components/loading-indicator/loadin
   exports: [
     TextInputComponent,
     PasswordInputComponent,
-    MatButtonModule,
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
     LoadingIndicatorComponent,
+    ButtonComponent,
   ],
 })
 export class SharedModule {}
