@@ -1,12 +1,23 @@
 <div class="background">
   <main class="container">
-    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <img
-        src="../../../../assets/picpay-logo.svg"
-        alt="Pic Pay logo"
-        class="picpay-logo"
-      />
+    <img
+      src="../../../../assets/picpay-logo.svg"
+      alt="Pic Pay logo"
+      class="picpay-logo"
+    />
 
+    <app-loading-indicator
+      *ngIf="isLoading"
+      style="flex: 0.8"
+      class="flex-center"
+    ></app-loading-indicator>
+
+    <form
+      *ngIf="!isLoading"
+      class="login-form"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
       <div class="login-inputs-container">
         <app-text-input
           style="margin: 10px 0"

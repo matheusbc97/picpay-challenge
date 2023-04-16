@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,27 +8,40 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  constructor(private authService: AuthService) {}
+
+  public isLoading = false;
+
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    username: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    password: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
   onSubmit() {
-    console.log(this.loginForm.value);
-    console.log('errors', this.loginForm.get('password')?.errors);
-  }
-
-  getErrorMessage(key: string) {
-    const username = this.loginForm.get(key);
-
-    if (!username) {
-      return '';
+    if (this.loginForm.invalid) {
+      return;
     }
 
-    if (username?.hasError('required')) {
-      return 'Campo obrigatório';
-    }
+    this.isLoading = true;
 
-    return '';
+    const { username, password } = this.loginForm.getRawValue();
+
+    this.authService.login(username, password).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
   }
 }

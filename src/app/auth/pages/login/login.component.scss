@@ -17,16 +17,16 @@
   border-radius: 4px;
 }
 
+.picpay-logo {
+  width: 200px;
+  align-self: center;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
   flex: 1;
   width: 380px;
-
-  .picpay-logo {
-    width: 200px;
-    align-self: center;
-  }
 
   button {
     margin-top: 20px;
