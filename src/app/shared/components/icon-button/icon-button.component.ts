@@ -8,5 +8,9 @@ import { Component, Input } from '@angular/core';
 export class IconButtonComponent {
   @Input() tooltip = '';
 
-  public isHidden = true;
+  @Input() iconName = '';
+
+  @Input() buttonAreaLabel = '';
+
+  @Input() buttonAreaPressed: boolean | undefined;
 }
