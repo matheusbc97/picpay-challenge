@@ -1,0 +1,37 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.surface {
+  flex: 1;
+  background: #fff;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.14);
+  -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.14);
+  margin: 40px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.surface-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-container {
+  overflow-y: auto;
+
+  //height: 500px;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.mat-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+}

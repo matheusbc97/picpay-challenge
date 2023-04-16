@@ -18,6 +18,8 @@ export class TextInputComponent {
 
   @Input() name = '';
 
+  @Input() width = '100%';
+
   get errorMessage() {
     const errors = this.control.errors as any;
 

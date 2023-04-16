@@ -60,10 +60,6 @@ $picpay-challenge-theme: mat.define-light-theme((
 @include mat.all-component-themes($picpay-challenge-theme);
 
 /* You can add global styles to this file, and also import other style files */
-body {
-  all: unset;
-}
-
 html, body {
   height: 100%;
 }
