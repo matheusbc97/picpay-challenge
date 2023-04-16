@@ -10,8 +10,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { PaymentFormModalComponent } from './pages/dashboard/components/payment-form-modal/payment-form-modal.component';
+
 @NgModule({
-  declarations: [MainComponent, DashboardComponent, HeaderComponent],
+  declarations: [MainComponent, DashboardComponent, HeaderComponent, PaymentFormModalComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -19,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTableModule,
     MatPaginatorModule,
     MatCheckboxModule,
+    MatDialogModule,
   ],
 })
 export class MainModule {}

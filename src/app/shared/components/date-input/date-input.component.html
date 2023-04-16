@@ -1,0 +1,10 @@
+<mat-form-field
+  appearance="fill"
+  appearance="outline"
+  [ngStyle]="{ width: width }"
+>
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY" />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

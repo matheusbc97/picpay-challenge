@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="title-container">
+    <h3>Cadastrar Pagamento</h3>
+  </div>
+
+  <form class="form">
+    <app-text-input
+      style="margin: 10px 0"
+      [control]="paymentForm.controls.username"
+      label="Usuário"
+      autocomplete="username"
+      name="username"
+      placeholder="Digite o nome de usuário..."
+    ></app-text-input>
+    <app-text-input
+      style="margin: 10px 0"
+      [control]="paymentForm.controls.title"
+      label="Título"
+      name="title"
+      placeholder="Digite o título..."
+    ></app-text-input>
+    <app-date-input></app-date-input>
+    <app-text-input
+      style="margin: 10px 0"
+      [control]="paymentForm.controls.date"
+      label="Data"
+      name="date"
+      placeholder="Digite a data..."
+    ></app-text-input>
+    <app-text-input
+      style="margin: 10px 0"
+      [control]="paymentForm.controls.value"
+      label="Valor"
+      name="value"
+      placeholder="Digite o valor..."
+    ></app-text-input>
+
+    <div class="form-footer">
+      <app-text-button>Cancelar</app-text-button>
+      <app-button style="margin-left: 10px">Adicionar</app-button>
+    </div>
+  </form>
+</div>

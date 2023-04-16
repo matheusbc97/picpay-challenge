@@ -1,0 +1,21 @@
+.container {
+  padding: 40px 60px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+
+  h3 {
+    font-size: 22px;
+  }
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form {
+  margin-top: 20px;
+}
