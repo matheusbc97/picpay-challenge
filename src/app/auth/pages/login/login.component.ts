@@ -13,7 +13,8 @@ export class LoginComponent {
   });
 
   onSubmit() {
-    console.log(this.loginForm.getError('username'));
+    console.log(this.loginForm.value);
+    console.log('errors', this.loginForm.get('password')?.errors);
   }
 
   getErrorMessage(key: string) {

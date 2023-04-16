@@ -1,0 +1,14 @@
+<mat-form-field appearance="outline" style="width: 100%">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [formControl]="control"
+    [type]="type"
+    [placeholder]="placeholder"
+    [autocomplete]="autocomplete"
+    [name]="name"
+  />
+  <mat-error>
+    <small>{{ errorMessage }}</small>
+  </mat-error>
+</mat-form-field>

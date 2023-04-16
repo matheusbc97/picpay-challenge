@@ -8,33 +8,22 @@
       />
 
       <div class="login-inputs-container">
-        <mat-form-field appearance="outline" style="margin-bottom: 20px">
-          <mat-label>Usuário</mat-label>
-          <input
-            formControlName="username"
-            matInput
-            autocomplete="username"
-            name="username"
-            type="text"
-            placeholder="Digite o nome de usuário..."
-          />
-          <mat-error *ngIf="loginForm.get('username')?.invalid">
-            <small>{{ getErrorMessage("username") }}</small>
-          </mat-error>
-        </mat-form-field>
+        <app-text-input
+          style="margin: 10px 0"
+          [control]="loginForm.controls.username"
+          label="Nome de usuário"
+          autocomplete="username"
+          name="username"
+          placeholder="Digite o nome de usuário..."
+        ></app-text-input>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Senha</mat-label>
-          <input
-            formControlName="password"
-            matInput
-            type="password"
-            placeholder="Digite sua senha..."
-          />
-          <mat-error *ngIf="loginForm.get('password')?.invalid">
-            <small>{{ getErrorMessage("password") }}</small>
-          </mat-error>
-        </mat-form-field>
+        <app-password-input
+          style="margin: 10px 0"
+          [control]="loginForm.controls.password"
+          label="Senha"
+          placeholder="Digite sua senha..."
+        >
+        </app-password-input>
       </div>
 
       <button mat-raised-button type="submit" color="primary" class="button">
