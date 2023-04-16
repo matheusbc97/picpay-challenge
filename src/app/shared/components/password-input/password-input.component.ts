@@ -14,7 +14,7 @@ export class PasswordInputComponent {
 
   @Input() name = '';
 
-  public hide = true;
+  public isHidden = true;
 
   get errorMessage() {
     const errors = this.control.errors as any;
