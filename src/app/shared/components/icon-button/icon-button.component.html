@@ -1,0 +1,10 @@
+<button
+  mat-icon-button
+  matSuffix
+  type="button"
+  [matTooltip]="tooltip"
+  [attr.aria-label]="isHidden ? 'Mostrar senha' : 'Esconder senha'"
+  [attr.aria-pressed]="isHidden"
+>
+  <mat-icon>{{ isHidden ? "visibility_off" : "visibility" }}</mat-icon>
+</button>

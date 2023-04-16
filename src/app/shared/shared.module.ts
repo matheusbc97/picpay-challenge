@@ -13,6 +13,7 @@ import { PasswordInputComponent } from './components/password-input/password-inp
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 import { ButtonComponent } from './components/button/button.component';
+import { IconButtonComponent } from './components/icon-button/icon-button.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ButtonComponent } from './components/button/button.component';
     PasswordInputComponent,
     LoadingIndicatorComponent,
     ButtonComponent,
+    IconButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { ButtonComponent } from './components/button/button.component';
     ReactiveFormsModule,
     LoadingIndicatorComponent,
     ButtonComponent,
+    IconButtonComponent,
   ],
 })
 export class SharedModule {}
