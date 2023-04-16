@@ -15,6 +15,7 @@ export class DashboardComponent {
     'date',
     'value',
     'isPayed',
+    'actions',
   ];
 
   payments = paymentsMock;

@@ -47,6 +47,25 @@
         </td>
       </ng-container>
 
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let element">
+          <app-icon-button
+            matSuffix
+            tooltip="Editar"
+            buttonAreaLabel="Editar"
+            iconName="edit"
+          ></app-icon-button>
+          <app-icon-button
+            matSuffix
+            tooltip="Deletar"
+            buttonAreaLabel="Deletar"
+            iconName="delete"
+          ></app-icon-button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
