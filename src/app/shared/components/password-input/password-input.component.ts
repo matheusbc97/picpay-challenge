@@ -30,8 +30,7 @@ export class PasswordInputComponent {
     return '';
   }
 
-  teste() {
-    console.log('testea');
+  hide() {
     this.isHidden = !this.isHidden;
   }
 }
