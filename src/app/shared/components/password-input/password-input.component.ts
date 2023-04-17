@@ -29,4 +29,9 @@ export class PasswordInputComponent {
 
     return '';
   }
+
+  teste() {
+    console.log('testea');
+    this.isHidden = !this.isHidden;
+  }
 }
