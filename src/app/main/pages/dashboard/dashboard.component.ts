@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { paymentsMock } from './mocks/payments.mock';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormModalComponent } from './components/payment-form-modal/payment-form-modal.component';
+import { Payment } from 'src/app/shared/models/payment.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,8 +25,10 @@ export class DashboardComponent {
 
   payments = paymentsMock;
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(PaymentFormModalComponent, {});
+  openDialog(payment?: Payment): void {
+    const dialogRef = this.dialog.open(PaymentFormModalComponent, {
+      data: payment,
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');

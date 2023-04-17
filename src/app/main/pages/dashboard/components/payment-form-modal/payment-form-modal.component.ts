@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ValidateDate } from 'src/app/core/validators/date.validator';
+import { Payment } from 'src/app/shared/models/payment.model';
 
 @Component({
   selector: 'app-payment-form-modal',
@@ -9,8 +10,6 @@ import { ValidateDate } from 'src/app/core/validators/date.validator';
   styleUrls: ['./payment-form-modal.component.scss'],
 })
 export class PaymentFormModalComponent {
-  constructor(public dialogRef: MatDialogRef<PaymentFormModalComponent>) {}
-
   paymentForm = new FormGroup({
     username: new FormControl('', {
       nonNullable: true,
@@ -29,6 +28,23 @@ export class PaymentFormModalComponent {
       validators: [Validators.required],
     }),
   });
+
+  isUpdate = false;
+
+  constructor(
+    public dialogRef: MatDialogRef<PaymentFormModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public payment?: Payment
+  ) {
+    if (payment) {
+      this.isUpdate = true;
+      this.paymentForm.setValue({
+        username: payment.username,
+        title: payment.title,
+        date: payment.date,
+        value: payment.value.toString(),
+      });
+    }
+  }
 
   closeDialog() {
     this.dialogRef.close();

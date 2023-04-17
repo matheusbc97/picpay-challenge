@@ -19,10 +19,10 @@ import { ButtonComponent } from './components/button/button.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { TextButtonComponent } from './components/text-button/text-button.component';
 import { DateInputComponent } from './components/date-input/date-input.component';
+import { CurrencyValueInputComponent } from './components/currency-value-input/currency-value-input.component';
 
 import { IMaskModule } from 'angular-imask';
 import { getPtBrPaginatorIntl } from './utils/ptbr-paginator-intl';
-import { CurrencyValueInputComponent } from './components/currency-value-input/currency-value-input.component';
 
 @NgModule({
   declarations: [

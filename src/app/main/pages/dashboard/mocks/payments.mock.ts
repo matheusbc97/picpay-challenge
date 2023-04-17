@@ -1,4 +1,6 @@
-export const paymentsMock = [
+import { Payment } from 'src/app/shared/models/payment.model';
+
+export const paymentsMock: Payment[] = [
   {
     _id: '62b4c0c40970c5b9c578e18e',
     firstName: 'Kendre',

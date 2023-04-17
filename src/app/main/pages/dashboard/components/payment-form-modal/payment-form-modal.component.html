@@ -1,6 +1,6 @@
 <div class="container">
   <div class="title-container">
-    <h3>Cadastrar Pagamento</h3>
+    <h3>{{ isUpdate ? "Editar" : "Cadastrar" }} Pagamento</h3>
   </div>
 
   <form class="form">
@@ -26,7 +26,7 @@
     <div class="form-footer">
       <app-text-button (buttonClick)="closeDialog()">Cancelar</app-text-button>
       <app-button (buttonClick)="submit()" style="margin-left: 10px">
-        Adicionar
+        {{ isUpdate ? "Editar" : "Cadastrar" }}
       </app-button>
     </div>
   </form>
