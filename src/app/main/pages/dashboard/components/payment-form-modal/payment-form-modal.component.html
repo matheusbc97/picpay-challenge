@@ -19,14 +19,7 @@
       name="title"
       placeholder="Digite o título..."
     ></app-text-input>
-    <app-date-input></app-date-input>
-    <app-text-input
-      style="margin: 10px 0"
-      [control]="paymentForm.controls.date"
-      label="Data"
-      name="date"
-      placeholder="Digite a data..."
-    ></app-text-input>
+    <app-date-input [control]="paymentForm.controls.date"></app-date-input>
     <app-text-input
       style="margin: 10px 0"
       [control]="paymentForm.controls.value"
@@ -36,8 +29,10 @@
     ></app-text-input>
 
     <div class="form-footer">
-      <app-text-button>Cancelar</app-text-button>
-      <app-button style="margin-left: 10px">Adicionar</app-button>
+      <app-text-button (buttonClick)="closeDialog()">Cancelar</app-text-button>
+      <app-button (buttonClick)="submit()" style="margin-left: 10px"
+        >Adicionar</app-button
+      >
     </div>
   </form>
 </div>

@@ -3,8 +3,30 @@
   appearance="outline"
   [ngStyle]="{ width: width }"
 >
-  <mat-label>Choose a date</mat-label>
-  <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY" />
+  <mat-label>Data</mat-label>
+  <input
+    matInput
+    placeholder="DD/MM/YYYY"
+    [formControl]="control"
+    maxlength="10"
+    [imask]="{ mask: '00/00/0000' }"
+  />
+  <input
+    type="hidden"
+    [matDatepicker]="picker"
+    placeholder="Choose a date"
+    (dateChange)="handleDateChange($event.value)"
+  />
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
+  <mat-error>
+    <small>{{ errorMessage }}</small>
+  </mat-error>
 </mat-form-field>
+
+<!-- input
+  type="hidden"
+  [matDatepicker]="picker"
+  placeholder="Choose a date"
+  (dateChange)="autocomplete.value = toFormattedDate($event.value)"
+/ -->

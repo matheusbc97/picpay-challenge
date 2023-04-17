@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
@@ -17,7 +18,8 @@ import { ButtonComponent } from './components/button/button.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { TextButtonComponent } from './components/text-button/text-button.component';
 import { DateInputComponent } from './components/date-input/date-input.component';
-import { MatNativeDateModule } from '@angular/material/core';
+
+import { IMaskModule } from 'angular-imask';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    IMaskModule,
   ],
   exports: [
     TextInputComponent,
@@ -53,6 +56,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     TextButtonComponent,
     DateInputComponent,
   ],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+  ],
 })
 export class SharedModule {}

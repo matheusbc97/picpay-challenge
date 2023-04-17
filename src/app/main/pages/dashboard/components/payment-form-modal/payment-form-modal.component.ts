@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ValidateDate } from 'src/app/core/validators/date.validator';
 
 @Component({
   selector: 'app-payment-form-modal',
@@ -11,13 +12,29 @@ export class PaymentFormModalComponent {
   constructor(public dialogRef: MatDialogRef<PaymentFormModalComponent>) {}
 
   paymentForm = new FormGroup({
-    username: new FormControl(''),
-    title: new FormControl(''),
-    date: new FormControl(''),
-    value: new FormControl(''),
+    username: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    title: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    date: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, ValidateDate],
+    }),
+    value: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  submit() {
+    console.log(this.paymentForm.value);
   }
 }
