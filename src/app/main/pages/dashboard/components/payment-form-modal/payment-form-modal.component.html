@@ -5,34 +5,29 @@
 
   <form class="form">
     <app-text-input
-      style="margin: 10px 0"
       [control]="paymentForm.controls.username"
       label="Usuário"
-      autocomplete="username"
       name="username"
       placeholder="Digite o nome de usuário..."
     ></app-text-input>
     <app-text-input
-      style="margin: 10px 0"
       [control]="paymentForm.controls.title"
       label="Título"
       name="title"
       placeholder="Digite o título..."
     ></app-text-input>
     <app-date-input [control]="paymentForm.controls.date"></app-date-input>
-    <app-text-input
-      style="margin: 10px 0"
+    <app-currency-value-input
       [control]="paymentForm.controls.value"
       label="Valor"
       name="value"
-      placeholder="Digite o valor..."
-    ></app-text-input>
+    ></app-currency-value-input>
 
     <div class="form-footer">
       <app-text-button (buttonClick)="closeDialog()">Cancelar</app-text-button>
-      <app-button (buttonClick)="submit()" style="margin-left: 10px"
-        >Adicionar</app-button
-      >
+      <app-button (buttonClick)="submit()" style="margin-left: 10px">
+        Adicionar
+      </app-button>
     </div>
   </form>
 </div>
