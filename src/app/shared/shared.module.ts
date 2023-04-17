@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
@@ -20,6 +21,7 @@ import { TextButtonComponent } from './components/text-button/text-button.compon
 import { DateInputComponent } from './components/date-input/date-input.component';
 
 import { IMaskModule } from 'angular-imask';
+import { getPtBrPaginatorIntl } from './utils/ptbr-paginator-intl';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { IMaskModule } from 'angular-imask';
   providers: [
     MatDatepickerModule,
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: MatPaginatorIntl, useValue: getPtBrPaginatorIntl() },
   ],
 })
 export class SharedModule {}
