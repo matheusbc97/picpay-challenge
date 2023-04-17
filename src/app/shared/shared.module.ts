@@ -22,6 +22,7 @@ import { DateInputComponent } from './components/date-input/date-input.component
 
 import { IMaskModule } from 'angular-imask';
 import { getPtBrPaginatorIntl } from './utils/ptbr-paginator-intl';
+import { CurrencyValueInputComponent } from './components/currency-value-input/currency-value-input.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { getPtBrPaginatorIntl } from './utils/ptbr-paginator-intl';
     IconButtonComponent,
     TextButtonComponent,
     DateInputComponent,
+    CurrencyValueInputComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { getPtBrPaginatorIntl } from './utils/ptbr-paginator-intl';
     IconButtonComponent,
     TextButtonComponent,
     DateInputComponent,
+    CurrencyValueInputComponent,
   ],
   providers: [
     MatDatepickerModule,

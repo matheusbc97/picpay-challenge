@@ -1,0 +1,19 @@
+<mat-form-field
+  class="form-field"
+  appearance="outline"
+  [ngStyle]="{ width: width }"
+>
+  <mat-label>{{ label }}</mat-label>
+  <span matTextPrefix>R$&nbsp;&nbsp;&nbsp; </span>
+  <input
+    [imask]="{ mask: Number, scale: 2, signed: false, radix: '.' }"
+    matInput
+    [formControl]="control"
+    type="text"
+    placeholder="00.00"
+    [name]="name"
+  />
+  <mat-error>
+    <small>{{ errorMessage }}</small>
+  </mat-error>
+</mat-form-field>
