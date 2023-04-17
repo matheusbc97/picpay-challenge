@@ -4,6 +4,7 @@ import { paymentsMock } from './mocks/payments.mock';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormModalComponent } from './components/payment-form-modal/payment-form-modal.component';
 import { Payment } from 'src/app/shared/models/payment.model';
+import { DeletePaymentModalComponent } from './components/delete-payment-modal/delete-payment-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +28,17 @@ export class DashboardComponent {
 
   openDialog(payment?: Payment): void {
     const dialogRef = this.dialog.open(PaymentFormModalComponent, {
+      data: payment,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
+  }
+
+  openDeleteModal(payment: Payment): void {
+    const dialogRef = this.dialog.open(DeletePaymentModalComponent, {
       data: payment,
     });
 

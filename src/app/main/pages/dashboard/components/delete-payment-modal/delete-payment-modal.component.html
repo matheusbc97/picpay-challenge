@@ -1,0 +1,13 @@
+<div class="container">
+  <p>
+    Tem certeza que deseja deletar o pagamento do usuário
+    <b>{{ payment.username }}</b> na data
+    <b>{{ payment.date | date : "dd/MM/yyyy" }}</b> no valor
+    <b>{{ payment.value | currency : "R$ " }}</b
+    >?
+  </p>
+  <div class="footer">
+    <app-text-button (buttonClick)="closeDialog()">Cancelar</app-text-button>
+    <app-button style="margin-left: 15px">Deletar</app-button>
+  </div>
+</div>
