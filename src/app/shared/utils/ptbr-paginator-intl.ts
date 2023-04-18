@@ -23,6 +23,8 @@ export function getPtBrPaginatorIntl() {
 
   paginatorIntl.itemsPerPageLabel = 'Itens por página:';
   paginatorIntl.nextPageLabel = 'Próxima página';
+  paginatorIntl.firstPageLabel = 'Primeira página';
+  paginatorIntl.lastPageLabel = 'Última página';
   paginatorIntl.previousPageLabel = 'Pagina anterior';
   paginatorIntl.getRangeLabel = ptBrRangeLabel;
 
