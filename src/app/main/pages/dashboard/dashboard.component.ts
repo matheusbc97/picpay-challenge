@@ -6,7 +6,7 @@ import { PaymentFormModalComponent } from './components/payment-form-modal/payme
 import { Payment } from 'src/app/shared/models/payment.model';
 import { DeletePaymentModalComponent } from './components/delete-payment-modal/delete-payment-modal.component';
 import { PageEvent } from '@angular/material/paginator';
-import { PaginationService } from './services/pagination.service';
+import { PaginationService } from '../../../core/services/pagination.service';
 
 @Component({
   selector: 'app-dashboard',
