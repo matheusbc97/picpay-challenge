@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { paymentsMock } from './mocks/payments.mock';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,6 +6,7 @@ import { PaymentFormModalComponent } from './components/payment-form-modal/payme
 import { Payment } from 'src/app/shared/models/payment.model';
 import { DeletePaymentModalComponent } from './components/delete-payment-modal/delete-payment-modal.component';
 import { PageEvent } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
 import { PaginationService } from '../../../core/services/pagination.service';
 
 @Component({
@@ -13,12 +14,14 @@ import { PaginationService } from '../../../core/services/pagination.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit, OnDestroy {
   constructor(public dialog: MatDialog) {}
 
-  paymentsPagination = new PaginationService(paymentsMock);
+  paymentsPagination = new PaginationService();
 
-  searchControl = new FormControl('');
+  searchControl = new FormControl('', { nonNullable: true });
+  searchSubscription: Subscription | null = null;
+
   displayedColumns: string[] = [
     'username',
     'title',
@@ -27,6 +30,25 @@ export class DashboardComponent {
     'isPayed',
     'actions',
   ];
+
+  ngOnInit(): void {
+    this.paymentsPagination.setData(paymentsMock);
+    this.searchSubscription = this.searchControl.valueChanges.subscribe(
+      (searchValue) => {
+        this.paymentsPagination.setData(
+          paymentsMock.filter((payment) => {
+            return payment.username
+              .toLowerCase()
+              .includes(searchValue.toLowerCase());
+          })
+        );
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.searchSubscription?.unsubscribe();
+  }
 
   openPaymentFormModal(payment?: Payment): void {
     const dialogRef = this.dialog.open(PaymentFormModalComponent, {
