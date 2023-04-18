@@ -6,11 +6,11 @@
       label="Pesquisar"
       placeholder="Pesquisar..."
     ></app-text-input>
-    <app-button (buttonClick)="openDialog()">Adicionar</app-button>
+    <app-button (buttonClick)="openPaymentFormModal()">Adicionar</app-button>
   </div>
 
   <div class="table-container">
-    <table mat-table [dataSource]="payments">
+    <table mat-table [dataSource]="paymentsPagination.data">
       <!-- First Name Column -->
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef>Usuário</th>
@@ -52,7 +52,7 @@
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let element">
           <app-icon-button
-            (buttonClick)="openDialog(element)"
+            (buttonClick)="openPaymentFormModal(element)"
             matSuffix
             tooltip="Editar"
             buttonAreaLabel="Editar"
@@ -74,8 +74,12 @@
 
     <mat-paginator
       [pageSizeOptions]="[5, 10, 20]"
+      [pageSize]="paymentsPagination.pageSize"
+      [length]="paymentsPagination.length"
+      [pageIndex]="paymentsPagination.pageIndex"
       showFirstLastButtons
-      aria-label="Select page of periodic elements"
+      aria-label="Selecione a página"
+      (page)="handlePageEvent($event)"
       class="mat-paginator-sticky"
     >
     </mat-paginator>

@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormModalComponent } from './components/payment-form-modal/payment-form-modal.component';
 import { Payment } from 'src/app/shared/models/payment.model';
 import { DeletePaymentModalComponent } from './components/delete-payment-modal/delete-payment-modal.component';
+import { PageEvent } from '@angular/material/paginator';
+import { PaginationService } from './services/pagination.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +15,8 @@ import { DeletePaymentModalComponent } from './components/delete-payment-modal/d
 })
 export class DashboardComponent {
   constructor(public dialog: MatDialog) {}
+
+  paymentsPagination = new PaginationService(paymentsMock);
 
   searchControl = new FormControl('');
   displayedColumns: string[] = [
@@ -24,9 +28,7 @@ export class DashboardComponent {
     'actions',
   ];
 
-  payments = paymentsMock;
-
-  openDialog(payment?: Payment): void {
+  openPaymentFormModal(payment?: Payment): void {
     const dialogRef = this.dialog.open(PaymentFormModalComponent, {
       data: payment,
     });
@@ -46,5 +48,14 @@ export class DashboardComponent {
       console.log('The dialog was closed');
       //this.animal = result;
     });
+  }
+
+  handlePageEvent(pageEvent: PageEvent) {
+    if (pageEvent.pageSize !== this.paymentsPagination.pageSize) {
+      this.paymentsPagination.setPageSize(pageEvent.pageSize);
+      return;
+    }
+
+    this.paymentsPagination.setPageIndex(pageEvent.pageIndex);
   }
 }
