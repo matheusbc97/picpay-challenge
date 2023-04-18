@@ -72,16 +72,6 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      [pageSize]="paymentsPagination.pageSize"
-      [length]="paymentsPagination.length"
-      [pageIndex]="paymentsPagination.pageIndex"
-      showFirstLastButtons
-      aria-label="Selecione a página"
-      (page)="handlePageEvent($event)"
-      class="mat-paginator-sticky"
-    >
-    </mat-paginator>
+    <app-paginator [pagination]="paymentsPagination"></app-paginator>
   </div>
 </div>

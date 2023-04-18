@@ -1,9 +1,18 @@
 import { Inject, Injectable } from '@angular/core';
 
+export interface BasePagination {
+  pageIndex: number;
+  pageSize: number;
+  length: number;
+  reset(): void;
+  setPageSize(pageSize: number): void;
+  setPageIndex(pageIndex: number): void;
+}
+
 @Injectable({
   providedIn: 'root',
 })
-export class PaginationService<T> {
+export class PaginationService<T> implements BasePagination {
   private _data: T[] = [];
   public pageIndex = 0;
   public pageSize = 20;

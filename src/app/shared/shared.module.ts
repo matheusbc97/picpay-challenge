@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
@@ -24,6 +25,7 @@ import { CurrencyValueInputComponent } from './components/currency-value-input/c
 import { IMaskModule } from 'angular-imask';
 import { getPtBrPaginatorIntl } from './utils/ptbr-paginator-intl';
 import { ScreenLoaderModalComponent } from './components/screen-loader-modal/screen-loader-modal.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { ScreenLoaderModalComponent } from './components/screen-loader-modal/scr
     DateInputComponent,
     CurrencyValueInputComponent,
     ScreenLoaderModalComponent,
+    PaginatorComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +52,7 @@ import { ScreenLoaderModalComponent } from './components/screen-loader-modal/scr
     MatDatepickerModule,
     MatNativeDateModule,
     IMaskModule,
+    MatPaginatorModule,
   ],
   exports: [
     TextInputComponent,
@@ -63,6 +67,7 @@ import { ScreenLoaderModalComponent } from './components/screen-loader-modal/scr
     DateInputComponent,
     CurrencyValueInputComponent,
     ScreenLoaderModalComponent,
+    PaginatorComponent,
   ],
   providers: [
     MatDatepickerModule,
