@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ScreenLoaderService } from 'src/app/core/services/screen-loader.service';
+import { ToastService } from 'src/app/core/services/toast.service';
 import { ValidateDate } from 'src/app/core/validators/date.validator';
 import { Payment } from 'src/app/shared/models/payment.model';
 
@@ -35,6 +36,7 @@ export class PaymentFormModalComponent {
   constructor(
     public dialogRef: MatDialogRef<PaymentFormModalComponent>,
     private screenLoaderService: ScreenLoaderService,
+    private toastService: ToastService,
     @Inject(MAT_DIALOG_DATA) public payment?: Payment
   ) {
     if (payment) {
@@ -58,6 +60,8 @@ export class PaymentFormModalComponent {
 
     setTimeout(() => {
       this.screenLoaderService.close();
+      this.dialogRef.close();
+      this.toastService.open('Pagamento salvo com sucesso!');
     }, 2000);
   }
 }
