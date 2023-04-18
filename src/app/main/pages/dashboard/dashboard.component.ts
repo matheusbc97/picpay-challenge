@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { paymentsMock } from './mocks/payments.mock';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormModalComponent } from './components/payment-form-modal/payment-form-modal.component';
 import { Payment } from 'src/app/shared/models/payment.model';
@@ -10,6 +9,8 @@ import { Subscription } from 'rxjs';
 import { PaginationService } from '../../../core/services/pagination.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { ToastService } from 'src/app/core/services/toast.service';
+import { GetPaymentsService } from './services/get-payments.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,14 +19,18 @@ import { MatSort } from '@angular/material/sort';
 })
 export class DashboardComponent implements OnDestroy, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | null = null;
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private toastService: ToastService,
+    public getPaymentsService: GetPaymentsService
+  ) {}
 
   paymentsPagination = new PaginationService();
 
   searchControl = new FormControl('', { nonNullable: true });
   searchSubscription: Subscription | null = null;
 
-  dataSource = new MatTableDataSource(paymentsMock);
+  dataSource = new MatTableDataSource([] as Payment[]);
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   displayedColumns: string[] = [
@@ -41,11 +46,15 @@ export class DashboardComponent implements OnDestroy, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
 
-    this.searchSubscription = this.searchControl.valueChanges.subscribe(
-      (searchValue) => {
-        this.applyFilter(searchValue);
-      }
-    );
+    this.getPaymentsService.get().subscribe({
+      next: (response) => {
+        this.dataSource.data = response;
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastService.open('Ocorreu um erro ao carregar os pagamentos');
+      },
+    });
   }
 
   applyFilter(filterValue: string) {

@@ -10,7 +10,18 @@
   </div>
 
   <div class="table-container">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <app-loading-indicator
+      *ngIf="getPaymentsService.isLoading"
+      style="flex: 1"
+      class="flex-center"
+    ></app-loading-indicator>
+
+    <table
+      *ngIf="!getPaymentsService.isLoading"
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+    >
       <!-- First Name Column -->
       <ng-container matColumnDef="username">
         <th
@@ -71,7 +82,10 @@
       <ng-container matColumnDef="isPayed">
         <th mat-header-cell *matHeaderCellDef>Pago</th>
         <td mat-cell *matCellDef="let element">
-          <mat-checkbox [checked]="element.isPayed"></mat-checkbox>
+          <mat-checkbox
+            [disabled]="true"
+            [checked]="element.isPayed"
+          ></mat-checkbox>
         </td>
       </ng-container>
 

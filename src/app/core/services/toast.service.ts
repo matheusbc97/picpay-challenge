@@ -12,5 +12,9 @@ export class ToastService {
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });
+
+    setTimeout(() => {
+      this._snackBar.dismiss();
+    }, 4000);
   }
 }

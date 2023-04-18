@@ -3,7 +3,7 @@
     <h3>{{ isUpdate ? "Editar" : "Cadastrar" }} Pagamento</h3>
   </div>
 
-  <form class="form">
+  <form class="form" [formGroup]="paymentForm" (ngSubmit)="submit()">
     <app-text-input
       [control]="paymentForm.controls.username"
       label="Usuário"
@@ -22,10 +22,22 @@
       label="Valor"
       name="value"
     ></app-currency-value-input>
+    <app-text-input
+      [control]="paymentForm.controls.firstName"
+      label="Primeiro nome"
+      name="firstName"
+      placeholder="Digite o primeiro nome..."
+    ></app-text-input>
+    <app-text-input
+      [control]="paymentForm.controls.lastName"
+      label="Sobrenome"
+      name="lastName"
+      placeholder="Digite o Sobrenome..."
+    ></app-text-input>
 
     <div class="form-footer">
       <app-text-button (buttonClick)="closeDialog()">Cancelar</app-text-button>
-      <app-button (buttonClick)="submit()" style="margin-left: 10px">
+      <app-button type="submit" style="margin-left: 10px">
         {{ isUpdate ? "Editar" : "Cadastrar" }}
       </app-button>
     </div>
