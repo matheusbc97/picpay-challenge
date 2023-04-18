@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ScreenLoaderService } from 'src/app/core/services/screen-loader.service';
 import { ValidateDate } from 'src/app/core/validators/date.validator';
 import { Payment } from 'src/app/shared/models/payment.model';
 
@@ -33,6 +34,7 @@ export class PaymentFormModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<PaymentFormModalComponent>,
+    private screenLoaderService: ScreenLoaderService,
     @Inject(MAT_DIALOG_DATA) public payment?: Payment
   ) {
     if (payment) {
@@ -52,5 +54,10 @@ export class PaymentFormModalComponent {
 
   submit() {
     console.log(this.paymentForm.value);
+    this.screenLoaderService.open();
+
+    setTimeout(() => {
+      this.screenLoaderService.close();
+    }, 2000);
   }
 }

@@ -1,0 +1,14 @@
+.container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+p {
+  margin-top: 30px;
+  margin-bottom: 0;
+
+  font-size: 18px;
+}
