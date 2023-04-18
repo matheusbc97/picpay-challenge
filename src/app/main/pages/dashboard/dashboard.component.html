@@ -10,22 +10,43 @@
   </div>
 
   <div class="table-container">
-    <table mat-table [dataSource]="paymentsPagination.data">
+    <table mat-table [dataSource]="dataSource" matSort>
       <!-- First Name Column -->
       <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef>Usuário</th>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by number"
+        >
+          Usuário
+        </th>
         <td mat-cell *matCellDef="let element">{{ element.username }}</td>
       </ng-container>
 
       <!-- Title Column -->
       <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by number"
+        >
+          Título
+        </th>
         <td mat-cell *matCellDef="let element">{{ element.title }}</td>
       </ng-container>
 
       <!-- Date Column -->
       <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by number"
+        >
+          Data
+        </th>
         <td mat-cell *matCellDef="let element">
           {{ element.date | date : "dd/MM/yyyy" }}
         </td>
@@ -33,7 +54,14 @@
 
       <!-- Value Column -->
       <ng-container matColumnDef="value">
-        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by number"
+        >
+          Valor
+        </th>
         <td mat-cell *matCellDef="let element">
           {{ element.value | currency : "R$ " }}
         </td>
@@ -72,6 +100,12 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    <app-paginator [pagination]="paymentsPagination"></app-paginator>
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 40]"
+      showFirstLastButtons
+      aria-label="Selecione a página"
+      class="mat-paginator-sticky"
+    >
+    </mat-paginator>
   </div>
 </div>

@@ -1,26 +1,32 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { paymentsMock } from './mocks/payments.mock';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormModalComponent } from './components/payment-form-modal/payment-form-modal.component';
 import { Payment } from 'src/app/shared/models/payment.model';
 import { DeletePaymentModalComponent } from './components/delete-payment-modal/delete-payment-modal.component';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { PaginationService } from '../../../core/services/pagination.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnDestroy, AfterViewInit {
+  @ViewChild(MatSort) sort: MatSort | null = null;
   constructor(public dialog: MatDialog) {}
 
   paymentsPagination = new PaginationService();
 
   searchControl = new FormControl('', { nonNullable: true });
   searchSubscription: Subscription | null = null;
+
+  dataSource = new MatTableDataSource(paymentsMock);
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   displayedColumns: string[] = [
     'username',
@@ -31,19 +37,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
     'actions',
   ];
 
-  ngOnInit(): void {
-    this.paymentsPagination.setData(paymentsMock);
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+
     this.searchSubscription = this.searchControl.valueChanges.subscribe(
       (searchValue) => {
-        this.paymentsPagination.setData(
-          paymentsMock.filter((payment) => {
-            return payment.username
-              .toLowerCase()
-              .includes(searchValue.toLowerCase());
-          })
-        );
+        this.applyFilter(searchValue);
       }
     );
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   ngOnDestroy(): void {

@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
@@ -68,6 +69,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     CurrencyValueInputComponent,
     ScreenLoaderModalComponent,
     PaginatorComponent,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   providers: [
     MatDatepickerModule,
