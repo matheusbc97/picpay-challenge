@@ -1,6 +1,7 @@
 header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   height: 80px;
   background-color: white;
   -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.14);
@@ -32,4 +33,15 @@ p {
 .user-icon {
   transform: scale(1.4);
   color: #757575;
+}
+
+.exit-button {
+  background: none;
+  border: none;
+  height: 40px;
+  margin-left: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
