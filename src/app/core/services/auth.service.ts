@@ -13,12 +13,9 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {
-    return this.http.post<LoginResponse>(
-      'https://3kniis.sse.codesandbox.io/auth/login',
-      {
-        username,
-        password,
-      }
-    );
+    return this.http.post<LoginResponse>('auth/login', {
+      username,
+      password,
+    });
   }
 }

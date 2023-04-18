@@ -61,24 +61,14 @@ export class DashboardComponent implements OnDestroy, AfterViewInit {
   }
 
   openPaymentFormModal(payment?: Payment): void {
-    const dialogRef = this.dialog.open(PaymentFormModalComponent, {
+    this.dialog.open(PaymentFormModalComponent, {
       data: payment,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      //this.animal = result;
     });
   }
 
   openDeleteModal(payment: Payment): void {
-    const dialogRef = this.dialog.open(DeletePaymentModalComponent, {
+    this.dialog.open(DeletePaymentModalComponent, {
       data: payment,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      //this.animal = result;
     });
   }
 
