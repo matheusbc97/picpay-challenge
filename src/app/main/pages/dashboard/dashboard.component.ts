@@ -4,9 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormModalComponent } from './components/payment-form-modal/payment-form-modal.component';
 import { Payment } from 'src/app/shared/models/payment.model';
 import { DeletePaymentModalComponent } from './components/delete-payment-modal/delete-payment-modal.component';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { PaginationService } from '../../../core/services/pagination.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ToastService } from 'src/app/core/services/toast.service';
@@ -24,8 +23,6 @@ export class DashboardComponent implements OnDestroy, AfterViewInit {
     private toastService: ToastService,
     public getPaymentsService: GetPaymentsService
   ) {}
-
-  paymentsPagination = new PaginationService();
 
   searchControl = new FormControl('', { nonNullable: true });
   searchSubscription: Subscription | null = null;
@@ -79,14 +76,5 @@ export class DashboardComponent implements OnDestroy, AfterViewInit {
     this.dialog.open(DeletePaymentModalComponent, {
       data: payment,
     });
-  }
-
-  handlePageEvent(pageEvent: PageEvent) {
-    if (pageEvent.pageSize !== this.paymentsPagination.pageSize) {
-      this.paymentsPagination.setPageSize(pageEvent.pageSize);
-      return;
-    }
-
-    this.paymentsPagination.setPageIndex(pageEvent.pageIndex);
   }
 }

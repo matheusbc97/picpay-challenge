@@ -1,11 +1,7 @@
 <mat-paginator
   [pageSizeOptions]="[5, 10, 20]"
-  [pageSize]="pagination?.pageSize"
-  [length]="pagination?.length"
-  [pageIndex]="pagination?.pageIndex"
   showFirstLastButtons
   aria-label="Selecione a página"
-  (page)="handlePageEvent($event)"
   class="mat-paginator-sticky"
 >
 </mat-paginator>
