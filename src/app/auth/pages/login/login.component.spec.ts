@@ -10,7 +10,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { AppModule } from 'src/app/app.module';
+import { AuthModule } from '../../auth.module';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
+@Component({
+  selector: 'app-login-form',
+  template: '',
+})
+class MockLoginFormComponent {}
 
 class MockAuthService {
   login(username: string, password: string) {
@@ -28,21 +40,27 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let authService: AuthService;
+  let router: Router;
+
+  const mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoginComponent],
+      declarations: [LoginComponent, MockLoginFormComponent],
       imports: [MatSnackBarModule, SharedModule, BrowserAnimationsModule],
       providers: [
         {
           provide: AuthService,
           useClass: MockAuthService,
         },
+        { provide: Router, useValue: mockRouter },
       ],
     }).compileComponents();
 
     authService = TestBed.inject(AuthService);
-
+    router = TestBed.inject(Router);
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -52,31 +70,6 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a formGroup', () => {
-    expect(component.loginForm).toBeTruthy();
-  });
-
-  it('should make the username control required', () => {
-    const control = component.loginForm.controls.username;
-    control.setValue('');
-    expect(control.valid).toBeFalsy();
-  });
-
-  it('should make the password control required', () => {
-    const control = component.loginForm.controls.password;
-    control.setValue('');
-    expect(control.valid).toBeFalsy();
-  });
-
-  it('should call onSubmit method', () => {
-    const spy = spyOn(component, 'onSubmit');
-    const submitButton = fixture.nativeElement.querySelector(
-      'button[type="submit"]'
-    );
-    submitButton.click();
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should call authService.login method', () => {
     const spy = spyOn(authService, 'login').and.returnValue(
       of({
@@ -84,32 +77,11 @@ describe('LoginComponent', () => {
         message: 'test',
       })
     );
-    component.onSubmit();
+    component.onSubmit({
+      password: 'test',
+      username: 'test',
+    });
     expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should have a form', () => {
-    const form = fixture.nativeElement.querySelector('form');
-    expect(form).toBeTruthy();
-  });
-
-  it('should have a username field', () => {
-    const username = fixture.nativeElement.querySelector(
-      'input[name="username"]'
-    );
-    expect(username).toBeTruthy();
-  });
-
-  it('should have a password field', () => {
-    const password = fixture.nativeElement.querySelector(
-      'input[name="password"]'
-    );
-    expect(password).toBeTruthy();
-  });
-
-  it('should have a submit button', () => {
-    const submit = fixture.nativeElement.querySelector('button[type="submit"]');
-    expect(submit).toBeTruthy();
   });
 
   it('should have a picpay logo', () => {
@@ -117,42 +89,11 @@ describe('LoginComponent', () => {
     expect(logo).toBeTruthy();
   });
 
-  it('should submit a valid form', () => {
-    const form = fixture.nativeElement.querySelector('form');
-    const username = fixture.nativeElement.querySelector(
-      'input[name="username"]'
-    );
-    const password = fixture.nativeElement.querySelector(
-      'input[name="password"]'
-    );
-
-    username.value = 'test';
-    password.value = 'test';
-
-    username.dispatchEvent(new Event('input'));
-    password.dispatchEvent(new Event('input'));
-
-    form.dispatchEvent(new Event('submit'));
-
-    fixture.detectChanges();
-
-    expect(component.loginForm.valid).toBeTruthy();
-  });
-
-  it('should submit a invalid form', () => {
-    //jasmine.createSpyObj(['getCustomer'])
-
-    const form = fixture.nativeElement.querySelector('form');
-
-    form.dispatchEvent(new Event('submit'));
-
-    fixture.detectChanges();
-
-    expect(component.loginForm.invalid).toBeTruthy();
-  });
-
   it('should set isLoading to true when login is called', () => {
-    component.onSubmit();
+    component.onSubmit({
+      password: 'test',
+      username: 'test',
+    });
     expect(component.isLoading).toBeTrue();
   });
 
@@ -164,19 +105,39 @@ describe('LoginComponent', () => {
       })
     );
 
-    component.onSubmit();
+    component.onSubmit({
+      password: 'test',
+      username: 'test',
+    });
     expect(component.isLoading).toBeFalse();
   });
 
-  it('should set isLoading to false after authService.login method is rejected (2)', fakeAsync(() => {
+  it('should set isLoading to false after authService.login method is rejected (2)', () => {
+    spyOn(authService, 'login').and.returnValue(
+      throwError(() => new Error('test'))
+    );
+
+    component.onSubmit({
+      password: 'test',
+      username: 'test',
+    });
+
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('should call navigate to main', () => {
     spyOn(authService, 'login').and.returnValue(
       of({
         access_token: 'test',
         message: 'test',
       })
     );
-    component.onSubmit();
-    tick();
-    expect(component.isLoading).toBeFalse();
-  }));
+
+    component.onSubmit({
+      password: 'test',
+      username: 'test',
+    });
+
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/main']);
+  });
 });

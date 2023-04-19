@@ -11,17 +11,17 @@ export class GetPaymentsService {
 
   public isLoading = false;
 
-  private subjectName = new Subject<Payment[]>(); //need to create a subject
+  private subject = new Subject<Payment[]>();
 
   private _getPayments() {
     this.paymentsService
       .get()
       .subscribe({
         next: (response) => {
-          this.subjectName.next(response.items);
+          this.subject.next(response.items);
         },
         error: (error) => {
-          this.subjectName.error(error);
+          this.subject.error(error);
         },
       })
       .add(() => (this.isLoading = false));
@@ -36,6 +36,6 @@ export class GetPaymentsService {
     this.isLoading = true;
     this._getPayments();
 
-    return this.subjectName.asObservable();
+    return this.subject.asObservable();
   }
 }
