@@ -1,0 +1,21 @@
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+  <div class="login-inputs-container">
+    <app-text-input
+      [control]="loginForm.controls.username"
+      label="Nome de usuário"
+      autocomplete="username"
+      name="username"
+      placeholder="Digite o nome de usuário..."
+    ></app-text-input>
+
+    <app-password-input
+      [control]="loginForm.controls.password"
+      label="Senha"
+      placeholder="Digite sua senha..."
+      name="password"
+    >
+    </app-password-input>
+  </div>
+
+  <app-button class="button" type="submit">Entrar</app-button>
+</form>

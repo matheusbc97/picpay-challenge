@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthUserService } from 'src/app/core/services/auth-user.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { LoginForm } from './components/login-form/login-form.component';
 
 @Component({
   selector: 'app-login',
@@ -20,25 +20,10 @@ export class LoginComponent {
 
   public isLoading = false;
 
-  loginForm = new FormGroup({
-    username: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    password: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-  });
-
-  onSubmit() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-
+  onSubmit(loginForm: LoginForm) {
     this.isLoading = true;
 
-    const { username, password } = this.loginForm.getRawValue();
+    const { username, password } = loginForm;
 
     this.authService
       .login(username, password)
