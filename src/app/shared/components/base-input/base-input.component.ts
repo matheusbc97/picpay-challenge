@@ -1,7 +1,9 @@
-import { Directive, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-@Directive()
-export class BaseInputComponent {
+@Component({
+  template: '',
+})
+export abstract class BaseInputComponent {
   @Input() control: any;
   @Input() name = '';
 
