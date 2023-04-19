@@ -26,7 +26,6 @@ import { CurrencyValueInputComponent } from './components/currency-value-input/c
 import { IMaskModule } from 'angular-imask';
 import { getPtBrPaginatorIntl } from './utils/ptbr-paginator-intl';
 import { ScreenLoaderModalComponent } from './components/screen-loader-modal/screen-loader-modal.component';
-import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     DateInputComponent,
     CurrencyValueInputComponent,
     ScreenLoaderModalComponent,
-    PaginatorComponent,
   ],
   imports: [
     CommonModule,
@@ -68,7 +66,6 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     DateInputComponent,
     CurrencyValueInputComponent,
     ScreenLoaderModalComponent,
-    PaginatorComponent,
     MatSortModule,
     MatPaginatorModule,
   ],
