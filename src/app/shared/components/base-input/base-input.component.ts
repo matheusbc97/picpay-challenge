@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { InputErrorMessageEnum } from 'src/app/core/enums/input_error_messages.enum';
 
 @Component({
   template: '',
@@ -19,11 +20,11 @@ export abstract class BaseInputComponent {
     }
 
     if (errors['required']) {
-      return 'Campo obrigatório';
+      return InputErrorMessageEnum.REQUIRED;
     }
 
     if (errors['invalidDate']) {
-      return 'Data inválida';
+      return InputErrorMessageEnum.INVALID_DATE;
     }
 
     return '';
