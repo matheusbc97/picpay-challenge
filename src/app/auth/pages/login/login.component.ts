@@ -20,6 +20,11 @@ export class LoginComponent {
 
   public isLoading = false;
 
+  handleLoginSuccess(username: string, password: string) {
+    this.authUserService.setAuthenticatedUser(username, password);
+    this.router.navigate(['/main']);
+  }
+
   onSubmit(loginForm: LoginForm) {
     this.isLoading = true;
 
@@ -28,12 +33,8 @@ export class LoginComponent {
     this.authService
       .login(username, password)
       .subscribe({
-        next: (response) => {
-          this.authUserService.setAuthenticatedUser(
-            username,
-            response.access_token
-          );
-          this.router.navigate(['/main']);
+        next: () => {
+          this.handleLoginSuccess(username, password);
         },
         error: (error) => {
           console.log(error);
