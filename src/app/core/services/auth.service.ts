@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-interface LoginResponse {
+export interface LoginResponse {
   access_token: string;
   message: string;
 }
