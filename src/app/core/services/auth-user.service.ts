@@ -58,7 +58,6 @@ export class AuthUserService {
     localStorage.removeItem(this.localStorageKeys.username);
     localStorage.removeItem(this.localStorageKeys.token);
 
-    //toastr.error('Sessão Expirada');
     this.router.navigate(['/auth/login']);
   }
 }
