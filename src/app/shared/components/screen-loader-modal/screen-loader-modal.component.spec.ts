@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScreenLoaderModalComponent } from './screen-loader-modal.component';
+import { Component } from '@angular/core';
+
+@Component({
+  template: '',
+  selector: 'app-loading-indicator',
+})
+class MockAppLoadingComponent {}
 
 describe('ScreenLoaderModalComponent', () => {
   let component: ScreenLoaderModalComponent;
@@ -8,7 +15,7 @@ describe('ScreenLoaderModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ScreenLoaderModalComponent],
+      declarations: [ScreenLoaderModalComponent, MockAppLoadingComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScreenLoaderModalComponent);
