@@ -1,9 +1,4 @@
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -13,7 +8,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { of, throwError } from 'rxjs';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({
   selector: 'app-login-form',
@@ -37,7 +31,6 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let authService: AuthService;
-  let router: Router;
 
   const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
@@ -57,7 +50,6 @@ describe('LoginComponent', () => {
     }).compileComponents();
 
     authService = TestBed.inject(AuthService);
-    router = TestBed.inject(Router);
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
