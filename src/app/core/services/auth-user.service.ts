@@ -42,10 +42,7 @@ export class AuthUserService {
   }
 
   setAuthenticatedUser(username: string, token: string) {
-    localStorage.setItem(
-      this.localStorageKeys.username,
-      JSON.stringify(username)
-    );
+    localStorage.setItem(this.localStorageKeys.username, username);
     localStorage.setItem(this.localStorageKeys.token, token);
 
     this.setUser(username, token);
