@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { PaymentFormModalComponent } from './pages/dashboard/components/payment-form-modal/payment-form-modal.component';
 import { DeletePaymentModalComponent } from './pages/dashboard/components/delete-payment-modal/delete-payment-modal.component';
+import { DashboardTableComponent } from './pages/dashboard/components/dashboard-table/dashboard-table.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DeletePaymentModalComponent } from './pages/dashboard/components/delete
     HeaderComponent,
     PaymentFormModalComponent,
     DeletePaymentModalComponent,
+    DashboardTableComponent,
   ],
   imports: [
     CommonModule,
