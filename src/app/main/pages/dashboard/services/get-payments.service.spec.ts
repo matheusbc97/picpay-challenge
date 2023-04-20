@@ -32,11 +32,11 @@ describe('GetPaymentsService', () => {
 
     let result: any;
 
-    service.get().subscribe((response) => {
+    service.getObservable().subscribe((response) => {
       result = response;
     });
 
-    service.reload();
+    service.getPayments();
 
     tick();
 
@@ -44,7 +44,7 @@ describe('GetPaymentsService', () => {
   }));
 
   it('isLoading should be true', () => {
-    service.get();
+    service.getPayments();
 
     expect(service.isLoading).toBeTrue();
   });
