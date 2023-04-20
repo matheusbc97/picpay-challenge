@@ -7,7 +7,11 @@ import { AuthUserService } from 'src/app/core/services/auth-user.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private authUserService: AuthUserService) {}
+  public userName: string | null = null;
+
+  constructor(private authUserService: AuthUserService) {
+    this.userName = this.authUserService.getUserName();
+  }
 
   logout() {
     this.authUserService.logOut();
