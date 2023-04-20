@@ -1,27 +1,58 @@
 # PicpayChallenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5.
+## Framework e Tecnologias Utilizadas
 
-## Development server
+### Principais Tecnologias
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Neste Projeto foi utilizado o **Angular v15**, junto com o **Angular Material v15**.
 
-## Code scaffolding
+### Outras Tecnologias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Além disso foi utilizado o **date-fns v2** para formatação e validação de datas e o angular **imask v6** para máscaras no input.
+
+O Gerenciador de pacotes utilizado foi o **pnpm v8.2.0**
+
+Para uma padronização de mensagens de commit foi utilizado o **husky v8** e o **commitlint v17**
+
+Para formatação/estilização do código foi utilizado o **eslint v8** e o **prettier v2**
+
+## Instalando as dependências
+
+Antes de rodar o projeto instale as dependências com `pnpm i` (recomendado) ou `npm i`, `yarn` ou o gerenciador de pacotes de sua preferência.
+
+## Rodando o projeto
+
+Execute ng serve para iniciar um servidor de desenvolvimento e depois navegue para http://localhost:4200/.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Execute `ng build` para gerar a build do projeto. Os artefatos de construção serão armazenados no diretório `dist/`.
 
-## Running unit tests
+## Rodando testes unitários
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Execute ng test para executar os testes unitários através do [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Estrutura do projeto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Core Module
+O CoreModule desempenha a função de módulo principal do aplicativo, embora não seja o módulo que é inicializado pelo Angular em tempo de execução.
 
-## Further help
+Aqui estão os arquivos que são executados uma vez e em tempo de execução, ou seja aqui estão services, componentes que são executas uma vez no início do projeto, interceptors, guards, constants, enums, utils, e models compartilhados pelo feature module.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Shared Module
+Aqui estão e são exportados os componentes, directives e pipes que são compartilhados pelos feature modules  
+
+### Feature Modules (auth, main)
+São os módulos com cada feature da aplicação no caso desta aplicação: AuthModule e MainModule
+
+
+## Formatação dos commits
+Os commits devem ser feitos no seguinte formato: `<type>(<scope>): <subject>` onde `<scope>` é opcional
+
+`feat`: (nova funcionalidade para o usuário, não uma nova funcionalidade para o script de build)
+`fix`: (correção de bug para o usuário, não uma correção para o script de build)
+`docs`: (alterações na documentação)
+`style`: (formatação, ponto e vírgula faltando, etc; sem alteração de código de produção)
+`refactor`: (refatoração de código de produção, por exemplo, renomeando uma variável)
+`test`: (adição de testes faltantes, refatoração de testes; sem alteração de código de produção)
+`chore`: (Atualização de tarefas que não ocasionam alteração no código de produção, mas mudanças de ferramentas, mudanças de configuração e bibliotecas.)
