@@ -1,24 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 
 import { AuthService } from './auth.service';
 import { of } from 'rxjs';
 
 describe('AuthService', () => {
+  let httpMock: HttpTestingController;
   let service: AuthService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+    });
     service = TestBed.inject(AuthService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should make a GET request', () => {
-    const httpClient = TestBed.inject(HttpClient);
-
+  it('should make a POST request', () => {
     const params = {
       username: 'username',
       password: 'password',
@@ -29,12 +35,13 @@ describe('AuthService', () => {
       message: 'message',
     };
 
-    spyOn(httpClient, 'post').and.returnValue(of(response));
-
     service.login(params.username, params.password).subscribe((data) => {
       expect(data).toEqual(response);
     });
 
-    expect(httpClient.post).toHaveBeenCalledWith('auth/login', params);
+    const req = httpMock.expectOne('auth/login');
+    expect(req.request.method).toEqual('POST');
+
+    req.flush(response);
   });
 });
