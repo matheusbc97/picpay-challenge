@@ -1,12 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AuthUserService } from './auth-user.service';
+import { Router } from '@angular/router';
 
 describe('AuthUserService', () => {
   let service: AuthUserService;
 
+  const mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
+
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [{ provide: Router, useValue: mockRouter }],
+    });
     service = TestBed.inject(AuthUserService);
 
     const store = new Map<string, string>();
@@ -56,5 +63,13 @@ describe('AuthUserService', () => {
 
     expect(service.getToken()).toBeNull();
     expect(service.getUserName()).toBeNull();
+  });
+
+  it('should call navigate to auth/login', () => {
+    service.setAuthenticatedUser('username', 'token');
+
+    service.logOut();
+
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/auth/login']);
   });
 });
