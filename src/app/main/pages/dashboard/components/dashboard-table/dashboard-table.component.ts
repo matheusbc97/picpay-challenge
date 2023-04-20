@@ -8,7 +8,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {
@@ -40,10 +39,7 @@ export class DashboardTableComponent implements OnDestroy, AfterViewInit {
   public dataSource: MatTableDataSource<Payment, MatTableDataSourcePaginator> =
     new MatTableDataSource<Payment, MatTableDataSourcePaginator>();
 
-  constructor(
-    public dialog: MatDialog,
-    public getPaymentsService: GetPaymentsService
-  ) {}
+  constructor(public getPaymentsService: GetPaymentsService) {}
 
   searchControl = new FormControl('', { nonNullable: true });
   searchSubscription: Subscription | null = null;
