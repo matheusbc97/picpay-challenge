@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingIndicatorComponent } from './loading-indicator.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('LoadingIndicatorComponent', () => {
   let component: LoadingIndicatorComponent;
@@ -8,9 +9,9 @@ describe('LoadingIndicatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoadingIndicatorComponent ]
-    })
-    .compileComponents();
+      declarations: [LoadingIndicatorComponent],
+      imports: [MatProgressSpinnerModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoadingIndicatorComponent);
     component = fixture.componentInstance;
