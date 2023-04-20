@@ -29,8 +29,17 @@ export class DashboardComponent implements OnDestroy, OnInit {
   public payments: Payment[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
-  @ViewChild(DashboardTableComponent) table: DashboardTableComponent | null =
-    null;
+
+  private table: DashboardTableComponent | null = null;
+
+  @ViewChild(DashboardTableComponent) set tableContent(
+    content: DashboardTableComponent
+  ) {
+    if (content) {
+      this.table = content;
+      this.applyFilter();
+    }
+  }
 
   displayedColumns: string[] = [
     'username',
@@ -54,9 +63,13 @@ export class DashboardComponent implements OnDestroy, OnInit {
       },
     });
 
-    this.searchControl.valueChanges.subscribe((value) => {
-      this.table?.applyFilter(value);
+    this.searchControl.valueChanges.subscribe((search) => {
+      this.applyFilter(search);
     });
+  }
+
+  applyFilter(search?: string): void {
+    this.table?.applyFilter(search ?? this.searchControl.value);
   }
 
   ngOnDestroy(): void {

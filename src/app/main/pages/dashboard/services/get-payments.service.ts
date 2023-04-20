@@ -14,17 +14,16 @@ export class GetPaymentsService {
   private subject = new Subject<Payment[]>();
 
   private _getPayments() {
-    this.paymentsService
-      .get()
-      .subscribe({
-        next: (response) => {
-          this.subject.next(response.items);
-        },
-        error: (error) => {
-          this.subject.error(error);
-        },
-      })
-      .add(() => (this.isLoading = false));
+    this.paymentsService.get().subscribe({
+      next: (response) => {
+        this.isLoading = false;
+        this.subject.next(response.items);
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.subject.error(error);
+      },
+    });
   }
 
   getPayments() {
