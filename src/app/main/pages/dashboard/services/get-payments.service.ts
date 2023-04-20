@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, take, tap } from 'rxjs';
 import { PaymentsService } from 'src/app/core/services/payments.service';
 import { Payment } from 'src/app/shared/models/payment.model';
 
@@ -27,15 +27,12 @@ export class GetPaymentsService {
       .add(() => (this.isLoading = false));
   }
 
-  reload() {
+  getPayments() {
     this.isLoading = true;
     this._getPayments();
   }
 
-  get(): Observable<Payment[]> {
-    this.isLoading = true;
-    this._getPayments();
-
+  getObservable(): Observable<Payment[]> {
     return this.subject.asObservable();
   }
 }

@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormModalComponent } from './components/payment-form-modal/payment-form-modal.component';
@@ -16,7 +22,7 @@ import { GetPaymentsService } from './services/get-payments.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnDestroy, AfterViewInit {
+export class DashboardComponent implements OnDestroy, AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort | null = null;
   constructor(
     public dialog: MatDialog,
@@ -39,11 +45,10 @@ export class DashboardComponent implements OnDestroy, AfterViewInit {
     'actions',
   ];
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+  ngOnInit(): void {
+    this.getPaymentsService.getPayments();
 
-    this.getPaymentsService.get().subscribe({
+    this.getPaymentsService.getObservable().subscribe({
       next: (response) => {
         this.dataSource.data = response;
       },
@@ -52,6 +57,15 @@ export class DashboardComponent implements OnDestroy, AfterViewInit {
         this.toastService.open('Ocorreu um erro ao carregar os pagamentos');
       },
     });
+
+    this.searchControl.valueChanges.subscribe((value) => {
+      this.applyFilter(value);
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(filterValue: string) {

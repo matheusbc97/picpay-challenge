@@ -35,7 +35,7 @@ export class DeletePaymentModalComponent {
         next: () => {
           this.closeDialog();
           this.toastService.open('Pagamento excluído com sucesso!');
-          this.getPaymentsService.reload();
+          this.getPaymentsService.getPayments();
         },
         error: () => {
           this.toastService.open('Ocorreu um erro ao excluir o pagamento!');

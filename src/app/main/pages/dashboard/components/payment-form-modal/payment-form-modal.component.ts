@@ -155,6 +155,6 @@ export class PaymentFormModalComponent {
   private handleRequestEnd() {
     this.screenLoaderService.close();
     this.closeDialog();
-    this.getPaymentsService.reload();
+    this.getPaymentsService.getPayments();
   }
 }
