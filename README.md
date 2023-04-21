@@ -49,10 +49,10 @@ São os módulos com cada feature da aplicação no caso desta aplicação: Auth
 ## Formatação dos commits
 Os commits devem ser feitos no seguinte formato: `<type>(<scope>): <subject>` onde `<scope>` é opcional
 
-`feat`: (nova funcionalidade para o usuário, não uma nova funcionalidade para o script de build)
-`fix`: (correção de bug para o usuário, não uma correção para o script de build)
-`docs`: (alterações na documentação)
-`style`: (formatação, ponto e vírgula faltando, etc; sem alteração de código de produção)
-`refactor`: (refatoração de código de produção, por exemplo, renomeando uma variável)
-`test`: (adição de testes faltantes, refatoração de testes; sem alteração de código de produção)
-`chore`: (Atualização de tarefas que não ocasionam alteração no código de produção, mas mudanças de ferramentas, mudanças de configuração e bibliotecas.)
+`feat`: (nova funcionalidade para o usuário, não uma nova funcionalidade para o script de build).   
+`fix`: (correção de bug para o usuário, não uma correção para o script de build).  
+`docs`: (alterações na documentação).  
+`style`: (formatação, ponto e vírgula faltando, etc; sem alteração de código de produção).  
+`refactor`: (refatoração de código de produção, por exemplo, renomeando uma variável).  
+`test`: (adição de testes faltantes, refatoração de testes; sem alteração de código de produção).  
+`chore`: (Atualização de tarefas que não ocasionam alteração no código de produção, mas mudanças de ferramentas, mudanças de configuração e bibliotecas.). 
