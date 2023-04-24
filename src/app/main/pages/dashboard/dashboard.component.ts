@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { PaymentFormModalComponent } from './components/payment-form-modal/payment-form-modal.component';
+import { PaymentFormModalComponent } from './modals/payment-form-modal/payment-form-modal.component';
 import { Payment } from 'src/app/shared/models/payment.model';
-import { DeletePaymentModalComponent } from './components/delete-payment-modal/delete-payment-modal.component';
+import { DeletePaymentModalComponent } from './modals/delete-payment-modal/delete-payment-modal.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
