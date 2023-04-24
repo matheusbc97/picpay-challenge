@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PaymentFormModalComponent } from './pages/dashboard/modals/payment-form-modal/payment-form-modal.component';
 import { DeletePaymentModalComponent } from './pages/dashboard/modals/delete-payment-modal/delete-payment-modal.component';
 import { DashboardTableComponent } from './pages/dashboard/components/dashboard-table/dashboard-table.component';
+import { PaymentFormComponent } from './pages/dashboard/modals/payment-form-modal/components/payment-form/payment-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DashboardTableComponent } from './pages/dashboard/components/dashboard-
     PaymentFormModalComponent,
     DeletePaymentModalComponent,
     DashboardTableComponent,
+    PaymentFormComponent,
   ],
   imports: [
     CommonModule,

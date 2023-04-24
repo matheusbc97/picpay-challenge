@@ -1,0 +1,41 @@
+<form class="form" [formGroup]="paymentForm" (ngSubmit)="submit()">
+  <app-text-input
+    [control]="paymentForm.controls.username"
+    label="Usuário"
+    name="username"
+    placeholder="Digite o nome de usuário..."
+  ></app-text-input>
+  <app-text-input
+    [control]="paymentForm.controls.title"
+    label="Título"
+    name="title"
+    placeholder="Digite o título..."
+  ></app-text-input>
+  <app-date-input [control]="paymentForm.controls.date"></app-date-input>
+  <app-currency-value-input
+    [control]="paymentForm.controls.value"
+    label="Valor"
+    name="value"
+  ></app-currency-value-input>
+  <app-text-input
+    [control]="paymentForm.controls.firstName"
+    label="Primeiro nome"
+    name="firstName"
+    placeholder="Digite o primeiro nome..."
+  ></app-text-input>
+  <app-text-input
+    [control]="paymentForm.controls.lastName"
+    label="Sobrenome"
+    name="lastName"
+    placeholder="Digite o Sobrenome..."
+  ></app-text-input>
+
+  <div class="form-footer">
+    <app-text-button (buttonClick)="handleCancelClick()">
+      Cancelar
+    </app-text-button>
+    <app-button type="submit" style="margin-left: 10px">
+      {{ isUpdate ? "Editar" : "Cadastrar" }}
+    </app-button>
+  </div>
+</form>
