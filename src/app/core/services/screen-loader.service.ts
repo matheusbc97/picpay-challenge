@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ScreenLoaderModalComponent } from 'src/app/shared/components/screen-loader-modal/screen-loader-modal.component';
 
 @Injectable({
-  providedIn: 'platform',
+  providedIn: 'root',
 })
 export class ScreenLoaderService {
   constructor(private dialog: MatDialog) {}
